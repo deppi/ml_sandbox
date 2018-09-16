@@ -2,6 +2,7 @@ from sklearn import datasets
 from sklearn.cross_validation import train_test_split # deprecated method that splits your 
 													  # test and train data into two sets to run model testws
 from sklearn import tree
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
 # sample toy dataset
@@ -18,7 +19,13 @@ tree_classifier.fit(X_train, y_train)
 
 tree_predictions = tree_classifier.predict(X_test)
 
+knn_classifier = KNeighborsClassifier()
+knn_classifier.fit(X_train, y_train)
+
+knn_predictions = knn_classifier.predict(X_test)
+
 # gives how accurate the model. this uses the jaccard similarity method of calculating similarity
 # i.e. values in both (ordered) sets (y_test vs tree_predictions) divided by values in all sets
 # in other terms, the (# times tree_predictions[i] = y_test[i]) / len (tree_predictions)
-print (accuracy_score(y_test, tree_predictions))
+print ("Decision Tree Accuracy: %{}\nKNN Accuracy: %{}\n"
+	.format(accuracy_score(y_test, tree_predictions), accuracy_score(y_test, knn_predictions)))
