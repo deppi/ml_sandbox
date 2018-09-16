@@ -1,3 +1,3 @@
 #!/bin/bash
-docker build -t fun_ml .
-docker run fun_ml
+docker build -t ml_sandbox .
+docker run ml_sandbox
